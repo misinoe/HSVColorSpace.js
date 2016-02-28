@@ -1,11 +1,22 @@
 {
   "name": "hsv-color-space",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "[![Build Status](https://travis-ci.org/misinoe/HSVColorSpace.js.svg?branch=master)](https://travis-ci.org/misinoe/HSVColorSpace.js)",
   "main": "HSVColorSpace.js",
   "scripts": {
     "test": "node test.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "misinoe",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misinoe/HSVColorSpace.js.git"
+  },
+  "keywords": [
+    "hsv"
+  ],
+  "bugs": {
+    "url": "https://github.com/misinoe/HSVColorSpace.js/issues"
+  },
+  "homepage": "https://github.com/misinoe/HSVColorSpace.js#readme"
 }
