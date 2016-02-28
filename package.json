@@ -1,0 +1,11 @@
+{
+  "name": "hsv-color-space",
+  "version": "0.0.1",
+  "description": "",
+  "main": "HSVColorSpace.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
