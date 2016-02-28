@@ -1,7 +1,7 @@
 /**
 * ColorSpace utils
 */
-export default class HSVColorSpace{
+module.exports = {
 
   /**
   * HSV convert to RGB
@@ -10,7 +10,11 @@ export default class HSVColorSpace{
   * @param {number} [v=0.0] - Value(Brightness) of HSV 0.0~1.0
   * @returns {array} [r,g,b] r:0.0~1.0, g:0.0~1.0, b:0.0~1.0
   */
-  static hsvToRgb( h=0, s=0, v=0 ){
+  hsvToRgb: ( h, s, v )=>{
+    if( typeof h === "undefined" ) h = 0;
+    if( typeof s === "undefined" ) s = 0;
+    if( typeof v === "undefined" ) v = 0;
+
     var r=v,g=v,b=v;
     if (s > 0.0) {
       h *= 6.0;
@@ -48,7 +52,7 @@ export default class HSVColorSpace{
     }
 
     return [0,0,0];
-  }
+  },
 
   /**
   * RGB Convert to HSV
@@ -57,7 +61,11 @@ export default class HSVColorSpace{
   * @param {number} [b=0.0] - Blue 0.0~1.0
   * @return {array} [h,s,v] h:0.0~1.0, s:0.0~1.0, v:0.0~1.0
   */
-  static rgbToHsv( r=0, g=0, b=0 ){
+  rgbToHsv: ( r, g, b )=>{
+    if( typeof r === "undefined" ) r = 0;
+    if( typeof g === "undefined" ) g = 0;
+    if( typeof b === "undefined" ) b = 0;
+
     var max = r > g ? r : g;
     max = max > b ? max : b;
     var min = r < g ? r : g;
