@@ -64,7 +64,56 @@ var test4 = ( h, s, v )=>{
   if( Math.abs(v - hsv[2]) > 0.00000001 ) console.error( `V diff over 0.00000001 v:${v} hsv[2]:${hsv[2]}` );
 };
 
-
 for(i=0; i<10000; i++) test4( Math.random()*0.99999999999, Math.random(), Math.random() );
+
+var test5 = (h, s, v)=>{
+  var rgb1 = HSVColorSpace.hsvToRgb( h, s, v );
+  var hsv = HSVColorSpace.rgbToHsv( rgb1[0], rgb1[1], rgb1[2] );
+  var rgb2 = HSVColorSpace.hsvToRgb( hsv[0], hsv[1], hsv[2] );
+
+  if( Math.abs(rgb1[0] - rgb2[0]) > 0.00000001 ) console.error( `R diff over 0.00000001 rgb1[0]:${rgb1[0]} rgb2[0]:${rgb2[0]}` );
+  if( Math.abs(rgb1[1] - rgb2[1]) > 0.00000001 ) console.error( `G diff over 0.00000001 rgb1[1]:${rgb1[1]} rgb2[1]:${rgb2[1]}` );
+  if( Math.abs(rgb1[2] - rgb2[2]) > 0.00000001 ) console.error( `B diff over 0.00000001 rgb1[2]:${rgb1[2]} rgb2[2]:${rgb2[2]}` );
+}
+
+test5(0.0, 0.0, 0.0);
+test5(1.0, 1.0, 1.0);
+test5(1.0, 0.0, 0.0);
+test5(0.0, 0.0, 1.0);
+test5(0.5, 0.6, 0.2);
+test5(0.0, 0.5, 0.2);
+test5(0.0, 0.6, 0.5);
+test5(0.9, 0.0, 0.2);
+test5(0.9, 0.0, 0.3);
+test5(0.9, 0.0, 0.4);
+test5(0.2, 0.9, 0.0);
+test5(0.3, 0.5, 0.0);
+test5(0.4, 0.2, 0.0);
+for(i=0; i<5000; i++){
+  test5(Math.random(), Math.random(), Math.random());
+  test5(1.0, Math.random(), Math.random());
+  test5(Math.random(), 1.0, Math.random());
+  test5(Math.random(), Math.random(), 1.0);
+  test5(0.0, Math.random(), Math.random());
+  test5(Math.random(), 0.0, Math.random());
+  test5(Math.random(), Math.random(), 0.0);
+}
+
+var test6 = (h, s, v)=>{
+  var rgb = HSVColorSpace.hsvToRgb( h, s, v );
+  if(rgb[0] > 0) console.error(`R Over 0:${rgb[0]}`);
+  if(rgb[1] > 0) console.error(`G Over 0:${rgb[1]}`);
+  if(rgb[2] > 0) console.error(`B Over 0:${rgb[2]}`);
+}
+for(i=0; i<1000; i++){
+  test6(Math.random(), Math.random(), 0.0);
+  test6(0.0, Math.random(), 0.0);
+  test6(Math.random(), 0.0, 0.0);
+}
+
+for(i=0;i<100;i++){
+  var rgb = HSVColorSpace.hsvToRgb( 0.0, 0.0, Math.max(0.0001, Math.random()));
+  if(rgb[0] <= 0 || rgb[1] <= 0 || rgb[2] <= 0) console.error("rgb MUST NOT 0");
+}
 
 console.log( "Test Complete" );
