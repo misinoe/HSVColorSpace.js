@@ -51,7 +51,7 @@ module.exports = {
       return [r,g,b];
     }
 
-    return [0,0,0];
+    return [v, v, v];
   },
 
   /**
